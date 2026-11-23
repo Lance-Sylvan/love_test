@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 隐私保护：禁止搜索引擎抓取和收录本页面 -->
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Our Love Story | 我们的专属主页</title>
+
+  <!-- 引入优雅的中英文衬线体、无衬线体与手写体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- 引入 Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- 配置 Tailwind 自定义主题色、字体与动效 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FFFBF7',
+            'cream-soft': '#F8EFEA',
+            'rose-tea': '#C87A7A',
+            'rose-tea-dark': '#B16464',
+            'rose-blush': '#EED6D3',
+            'rose-mist': '#F6E6E4',
+            espresso: '#3D3131',
+            'espresso-muted': '#766464',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', '"Noto Serif SC"', 'serif'],
+            sans: ['"Inter"', '"Noto Sans SC"', 'sans-serif'],
+            hand: ['"Caveat"', '"Noto Serif SC"', 'cursive'],
+          },
+          animation: {
+            'spin-slow': 'spin 12s linear infinite',
+            'float-gentle': 'floatGentle 6s ease-in-out infinite',
+            'heartbeat': 'heartbeat 1.8s ease-in-out infinite',
+          },
+          keyframes: {
+            floatGentle: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            heartbeat: {
+              '0%, 100%': { transform: 'scale(1)' },
+              '15%': { transform: 'scale(1.18)' },
+              '30%': { transform: 'scale(1)' },
+              '45%': { transform: 'scale(1.12)' },
+              '60%': { transform: 'scale(1)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* 柔和的滚动渐显动画状态 */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 黑胶唱片暂停旋转状态 */
+    .vinyl-paused {
+      animation-play-state: paused !important;
+    }
+
+    /* 点击页面空白处生成的飘浮小爱心动画 */
+    @keyframes floatUpHeart {
+      0% {
+        opacity: 0.95;
+        transform: translate(-50%, -50%) scale(0.6) rotate(0deg);
+      }
+      50% {
+        opacity: 0.85;
+        transform: translate(calc(-50% + var(--drift)), -95px) scale(1.08) rotate(var(--rot));
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--drift)), -150px) scale(0.85) rotate(var(--rot));
+      }
+    }
+    .click-heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      animation: floatUpHeart 1.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* 细腻纸张质感背景点缀 */
+    body {
+      background-color: #FFFBF7;
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(238, 214, 211, 0.38) 0%, transparent 45%),
+        radial-gradient(circle at 85% 30%, rgba(200, 122, 122, 0.08) 0%, transparent 42%),
+        radial-gradient(circle at 50% 85%, rgba(238, 214, 211, 0.3) 0%, transparent 50%);
+    }
+  </style>
+</head>
+
+<body class="text-espresso font-sans antialiased selection:bg-rose-blush selection:text-espresso overflow-x-hidden">
+
+  <!-- 顶部极简导航栏 -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-cream/80 border-b border-rose-blush/50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="#top" class="font-serif text-lg sm:text-xl tracking-wide text-espresso flex items-center gap-2">
+        <span class="text-rose-tea">♥</span>
+        <span>Our Love Story</span>
+      </a>
+      <nav class="hidden sm:flex items-center gap-7 text-sm text-espresso-muted">
+        <a href="#timeline" class="hover:text-rose-tea transition-colors">时光轴</a>
+        <a href="#gallery" class="hover:text-rose-tea transition-colors">拍立得墙</a>
+        <a href="#bucket-list" class="hover:text-rose-tea transition-colors">恋爱清单</a>
+      </nav>
+      <div class="flex items-center gap-2 text-xs text-espresso-muted bg-rose-mist/70 px-3 py-1.5 rounded-full border border-rose-blush/60">
+        <span class="w-1.5 h-1.5 rounded-full bg-rose-tea animate-pulse"></span>
+        <span>私密空间</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== 1. HERO 顶部浪漫主视觉区 ==================== -->
+  <section id="top" class="relative pt-14 pb-20 sm:pt-20 sm:pb-28 px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto text-center">
+
+      <!-- 顶部优雅小标签 -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-rose-blush/80 shadow-sm text-xs sm:text-sm text-rose-tea tracking-widest uppercase mb-10">
+        <span>Private Journal</span>
+        <span class="text-rose-blush">•</span>
+        <span id="hero-start-date-badge">Since 2025.05.31 11:30</span>
+      </div>
+
+      <!-- 情侣双头像与昵称 -->
+      <div class="flex items-center justify-center gap-5 sm:gap-10 mb-8">
+        <!-- 头像 1 -->
+        <div class="flex flex-col items-center gap-3 group">
+          <div class="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full p-1.5 bg-gradient-to-tr from-rose-blush via-white to-rose-tea/40 shadow-md transition-transform duration-500 group-hover:scale-105">
+            <div id="avatar-1-container" class="w-full h-full rounded-full overflow-hidden bg-cream-soft flex items-center justify-center">
+              <!-- 默认温暖矢量插画头像 1 -->
+              <svg viewBox="0 0 120 120" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="avBg1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#F7E4E1" />
+                    <stop offset="100%" stop-color="#E7C2BE" />
+                  </linearGradient>
+                </defs>
+                <rect width="120" height="120" fill="url(#avBg1)" />
+                <circle cx="60" cy="46" r="19" fill="#FFFBF7" />
+                <path d="M26 112 C26 84 42 72 60 72 C78 72 94 84 94 112" fill="#FFFBF7" />
+                <path d="M44 42 C44 30 76 30 76 42 C72 36 48 36 44 42 Z" fill="#8C6B6B" opacity="0.5" />
+                <circle cx="53" cy="46" r="1.8" fill="#3D3131" />
+                <circle cx="67" cy="46" r="1.8" fill="#3D3131" />
+                <path d="M56 53 Q60 56 64 53" stroke="#C87A7A" stroke-width="1.8" fill="none" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+          <span id="name-1-display" class="font-serif text-lg sm:text-xl font-medium text-espresso tracking-wide">我</span>
+        </div>
+
+        <!-- 中间跳动红心 -->
+        <div class="flex flex-col items-center -mt-6">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/90 border border-rose-blush flex items-center justify-center shadow-sm">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-rose-tea animate-heartbeat" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+          </div>
+          <span class="text-[11px] font-serif italic text-espresso-muted mt-1.5">Forever</span>
+        </div>
+
+        <!-- 头像 2 -->
+        <div class="flex flex-col items-center gap-3 group">
+          <div class="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full p-1.5 bg-gradient-to-tr from-rose-tea/40 via-white to-rose-blush shadow-md transition-transform duration-500 group-hover:scale-105">
+            <div id="avatar-2-container" class="w-full h-full rounded-full overflow-hidden bg-cream-soft flex items-center justify-center">
+              <!-- 默认温暖矢量插画头像 2 -->
+              <svg viewBox="0 0 120 120" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="avBg2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#EFE0D8" />
+                    <stop offset="100%" stop-color="#DFB8B3" />
+                  </linearGradient>
+                </defs>
+                <rect width="120" height="120" fill="url(#avBg2)" />
+                <circle cx="60" cy="46" r="19" fill="#FFFBF7" />
+                <path d="M26 112 C26 84 42 72 60 72 C78 72 94 84 94 112" fill="#FFFBF7" />
+                <path d="M40 48 C38 26 82 26 80 48 C82 60 76 66 73 68 C73 54 68 38 60 38 C52 38 47 54 47 68 C44 66 38 60 40 48 Z" fill="#C87A7A" opacity="0.35" />
+                <circle cx="53" cy="47" r="1.8" fill="#3D3131" />
+                <circle cx="67" cy="47" r="1.8" fill="#3D3131" />
+                <path d="M56 54 Q60 57 64 54" stroke="#C87A7A" stroke-width="1.8" fill="none" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+          <span id="name-2-display" class="font-serif text-lg sm:text-xl font-medium text-espresso tracking-wide">你</span>
+        </div>
+      </div>
+
+      <!-- 浪漫主标题与 Taylor Swift 意境副标题 -->
+      <h1 class="font-serif text-3xl sm:text-5xl font-semibold text-espresso tracking-tight mb-4">
+        Our Love Story
+      </h1>
+      <p id="hero-quote-display" class="font-serif italic text-base sm:text-xl text-rose-tea mb-2">
+        “It's a love story, baby, just say yes.”
+      </p>
+      <p class="text-sm text-espresso-muted mb-10">
+        把散落在时光里的温柔瞬间，都悄悄收藏在这里
+      </p>
+
+      <!-- 实时恋爱计时器卡片 -->
+      <div class="bg-white/85 backdrop-blur-sm border border-rose-blush/80 rounded-3xl p-6 sm:p-8 shadow-[0_10px_35px_-12px_rgba(200,122,122,0.18)] max-w-2xl mx-auto">
+        <p class="text-xs sm:text-sm tracking-widest text-espresso-muted mb-5">
+          我们已经在一起
+        </p>
+        <div class="grid grid-cols-4 gap-2 sm:gap-4">
+          <div class="bg-cream rounded-2xl py-3.5 px-2 border border-rose-blush/50">
+            <div id="timer-days" class="font-serif text-2xl sm:text-4xl font-semibold text-rose-tea tabular-nums">0</div>
+            <div class="text-xs text-espresso-muted mt-1">天</div>
+          </div>
+          <div class="bg-cream rounded-2xl py-3.5 px-2 border border-rose-blush/50">
+            <div id="timer-hours" class="font-serif text-2xl sm:text-4xl font-semibold text-espresso tabular-nums">00</div>
+            <div class="text-xs text-espresso-muted mt-1">小时</div>
+          </div>
+          <div class="bg-cream rounded-2xl py-3.5 px-2 border border-rose-blush/50">
+            <div id="timer-minutes" class="font-serif text-2xl sm:text-4xl font-semibold text-espresso tabular-nums">00</div>
+            <div class="text-xs text-espresso-muted mt-1">分钟</div>
+          </div>
+          <div class="bg-cream rounded-2xl py-3.5 px-2 border border-rose-blush/50">
+            <div id="timer-seconds" class="font-serif text-2xl sm:text-4xl font-semibold text-rose-tea tabular-nums">00</div>
+            <div class="text-xs text-espresso-muted mt-1">秒</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 精致分隔装饰 -->
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="h-px bg-gradient-to-r from-transparent via-rose-blush to-transparent"></div>
+  </div>
+
+  <!-- ==================== 2. OUR TIMELINE 时光轴 ==================== -->
+  <section id="timeline" class="py-20 sm:py-24 px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-14 reveal">
+        <span class="text-xs uppercase tracking-[0.25em] text-rose-tea font-medium">Our Timeline</span>
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso mt-2">属于我们的时光轴</h2>
+        <p class="text-sm text-espresso-muted mt-2">每一个平凡的日子，因为有你而值得被标注</p>
+      </div>
+
+      <!-- 垂直时间轴容器 -->
+      <div class="relative pl-8 sm:pl-0">
+        <!-- 中轴线（移动端在左侧，桌面端居中） -->
+        <div class="absolute left-3 sm:left-1/2 top-2 bottom-2 w-px bg-gradient-to-b from-rose-blush via-rose-tea/50 to-rose-blush sm:-translate-x-1/2"></div>
+
+        <div class="space-y-10 sm:space-y-12">
+          <!-- 时光轴节点 1：可随时修改日期、标题和正文 -->
+          <div class="relative sm:grid sm:grid-cols-2 sm:gap-10 items-center reveal">
+            <div class="absolute -left-[25px] sm:left-1/2 top-5 sm:top-1/2 w-3.5 h-3.5 rounded-full bg-rose-tea border-2 border-cream sm:-translate-x-1/2 sm:-translate-y-1/2 shadow-sm"></div>
+            <div class="sm:text-right sm:pr-4">
+              <div class="bg-white/90 border border-rose-blush/70 rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
+                <span class="inline-block text-xs font-serif text-rose-tea bg-rose-mist px-2.5 py-0.5 rounded-full mb-2">2025.05.31 11:30</span>
+                <h3 class="font-serif text-lg font-semibold text-espresso mb-1.5">正式在一起</h3>
+                <p class="text-sm text-espresso-muted leading-relaxed">
+                  故事在这一刻正式开启。从今天起，把“我”和“你”写成“我们”。（这里以后可以换成你们的专属回忆）
+                </p>
+              </div>
+            </div>
+            <div class="hidden sm:block"></div>
+          </div>
+
+          <!-- 时光轴节点 2：示例文案，后续可自行替换 -->
+          <div class="relative sm:grid sm:grid-cols-2 sm:gap-10 items-center reveal">
+            <div class="absolute -left-[25px] sm:left-1/2 top-5 sm:top-1/2 w-3.5 h-3.5 rounded-full bg-cream border-2 border-rose-tea sm:-translate-x-1/2 sm:-translate-y-1/2 shadow-sm"></div>
+            <div class="hidden sm:block"></div>
+            <div class="sm:pl-4">
+              <div class="bg-white/90 border border-rose-blush/70 rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
+                <span class="inline-block text-xs font-serif text-rose-tea bg-rose-mist px-2.5 py-0.5 rounded-full mb-2">2025.09.08</span>
+                <h3 class="font-serif text-lg font-semibold text-espresso mb-1.5">在一起 100 天</h3>
+                <p class="text-sm text-espresso-muted leading-relaxed">
+                  第一个一百天，谢谢你把温柔和耐心都留给了我。（后续可自由编辑）
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 时光轴节点 3：示例文案，后续可自行替换 -->
+          <div class="relative sm:grid sm:grid-cols-2 sm:gap-10 items-center reveal">
+            <div class="absolute -left-[25px] sm:left-1/2 top-5 sm:top-1/2 w-3.5 h-3.5 rounded-full bg-cream border-2 border-rose-tea sm:-translate-x-1/2 sm:-translate-y-1/2 shadow-sm"></div>
+            <div class="sm:text-right sm:pr-4">
+              <div class="bg-white/90 border border-rose-blush/70 rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
+                <span class="inline-block text-xs font-serif text-rose-tea bg-rose-mist px-2.5 py-0.5 rounded-full mb-2">2025.10.02</span>
+                <h3 class="font-serif text-lg font-semibold text-espresso mb-1.5">第一次一起旅行</h3>
+                <p class="text-sm text-espresso-muted leading-relaxed">
+                  一起看过海边的日落，走过陌生的老街小巷。只要身边是你，去哪里都是好风景。
+                </p>
+              </div>
+            </div>
+            <div class="hidden sm:block"></div>
+          </div>
+
+          <!-- 时光轴节点 4：未完待续 -->
+          <div class="relative sm:grid sm:grid-cols-2 sm:gap-10 items-center reveal">
+            <div class="absolute -left-[25px] sm:left-1/2 top-5 sm:top-1/2 w-3.5 h-3.5 rounded-full bg-rose-blush border-2 border-rose-tea sm:-translate-x-1/2 sm:-translate-y-1/2 shadow-sm"></div>
+            <div class="hidden sm:block"></div>
+            <div class="sm:pl-4">
+              <div class="bg-gradient-to-br from-white to-rose-mist/50 border border-dashed border-rose-tea/50 rounded-2xl p-5 sm:p-6 shadow-sm">
+                <span class="inline-block text-xs font-serif text-rose-tea bg-white px-2.5 py-0.5 rounded-full mb-2 border border-rose-blush">To Be Continued...</span>
+                <h3 class="font-serif text-lg font-semibold text-espresso mb-1.5">未完待续</h3>
+                <p class="text-sm text-espresso-muted leading-relaxed">
+                  以后的每一个纪念日、每一次说走就走的旅行和柴米油盐，我们慢慢一起填满。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 精致分隔装饰 -->
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="h-px bg-gradient-to-r from-transparent via-rose-blush to-transparent"></div>
+  </div>
+
+  <!-- ==================== 3. POLAROID GALLERY 拍立得照片墙 ==================== -->
+  <section id="gallery" class="py-20 sm:py-24 px-4 sm:px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-14 reveal">
+        <span class="text-xs uppercase tracking-[0.25em] text-rose-tea font-medium">Polaroid Gallery</span>
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso mt-2">拍立得照片墙</h2>
+        <p class="text-sm text-espresso-muted mt-2">点击任意拍立得可查看大图，并支持上传你的本地照片实时预览替换</p>
+      </div>
+
+      <!-- 6 张拍立得网格（由 JS 渲染，支持点击查看大图和替换本地照片） -->
+      <div id="polaroid-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+        <!-- JS 动态生成 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 精致分隔装饰 -->
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="h-px bg-gradient-to-r from-transparent via-rose-blush to-transparent"></div>
+  </div>
+
+  <!-- ==================== 4. OUR BUCKET LIST 恋爱小事清单 ==================== -->
+  <section id="bucket-list" class="py-20 sm:py-24 px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-10 reveal">
+        <span class="text-xs uppercase tracking-[0.25em] text-rose-tea font-medium">Our Bucket List</span>
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso mt-2">想和你一起做的小事</h2>
+        <p class="text-sm text-espresso-muted mt-2">点击任意一项即可点亮或取消，记录我们的共同进度</p>
+      </div>
+
+      <!-- 进度条卡片 -->
+      <div class="bg-white/90 border border-rose-blush/80 rounded-3xl p-6 sm:p-8 shadow-sm reveal">
+        <div class="flex items-center justify-between text-sm mb-3">
+          <span class="font-medium text-espresso">恋爱成就进度</span>
+          <span class="font-serif text-rose-tea font-semibold">
+            已完成 <span id="bucket-done-count">0</span> / <span id="bucket-total-count">8</span> 件
+          </span>
+        </div>
+        <div class="w-full h-2.5 bg-rose-mist rounded-full overflow-hidden mb-7">
+          <div
+            id="bucket-progress-bar"
+            class="h-full bg-gradient-to-r from-rose-blush via-rose-tea to-rose-tea-dark rounded-full transition-all duration-500"
+            style="width: 0%"
+          ></div>
+        </div>
+
+        <!-- 清单列表 -->
+        <div id="bucket-items-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <!-- JS 动态渲染 8 件恋爱小事 -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部浪漫落款 -->
+  <footer class="pt-8 pb-28 sm:pb-24 px-4 text-center">
+    <div class="max-w-xl mx-auto">
+      <p class="font-serif italic text-rose-tea text-base mb-2">
+        “Marry me, Juliet, you'll never have to be alone.”
+      </p>
+      <p class="text-xs text-espresso-muted">
+        Made with ♥ exclusively for <span id="footer-names">我 &amp; 你</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ==================== 5. 悬浮黑胶唱片音乐播放器（左下角） ==================== -->
+  <div class="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40">
+    <div class="bg-white/95 backdrop-blur-md border border-rose-blush/90 rounded-2xl shadow-[0_12px_32px_-8px_rgba(61,49,49,0.16)] p-3 flex items-center gap-3 w-[285px] sm:w-[325px]">
+      <!-- 旋转黑胶唱片与播放/暂停按钮 -->
+      <button
+        id="music-toggle-btn"
+        type="button"
+        title="播放 / 暂停音乐"
+        class="relative w-12 h-12 shrink-0 rounded-full bg-espresso flex items-center justify-center shadow-inner cursor-pointer group focus:outline-none"
+      >
+        <div id="vinyl-disc" class="w-12 h-12 rounded-full bg-gradient-to-tr from-[#261F1F] via-[#4A3D3D] to-[#221B1B] flex items-center justify-center animate-spin-slow vinyl-paused border-2 border-rose-blush/40">
+          <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center">
+            <div class="w-4 h-4 rounded-full bg-rose-tea flex items-center justify-center">
+              <div class="w-1.5 h-1.5 rounded-full bg-cream"></div>
+            </div>
+          </div>
+        </div>
+        <div class="absolute inset-0 rounded-full bg-espresso/30 flex items-center justify-center text-white opacity-90 group-hover:bg-espresso/45 transition-colors">
+          <!-- 播放图标 -->
+          <svg id="icon-play" class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+          <!-- 暂停图标（默认隐藏） -->
+          <svg id="icon-pause" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+          </svg>
+        </div>
+      </button>
+
+      <!-- 曲目信息、柔和音量控制与本地原曲导入 -->
+      <div class="min-w-0 flex-1">
+        <div class="flex items-center justify-between gap-2">
+          <div class="min-w-0">
+            <p class="text-xs font-serif font-semibold text-espresso truncate">Love Story</p>
+            <p class="text-[11px] text-espresso-muted truncate">Taylor Swift</p>
+          </div>
+          <!-- 导入本地原曲 MP3 按钮 -->
+          <label
+            for="mp3-file-input"
+            class="shrink-0 text-[11px] px-2.5 py-1 rounded-full bg-rose-mist hover:bg-rose-blush text-rose-tea-dark cursor-pointer transition-colors font-medium"
+            title="选择本地的 Taylor Swift - Love Story 原曲音频试听"
+          >
+            导入原曲
+          </label>
+          <input id="mp3-file-input" type="file" accept="audio/*" class="hidden" />
+        </div>
+
+        <!-- 紧凑音量条（默认 25% 柔和背景音量） -->
+        <div class="flex items-center gap-2 mt-2">
+          <button
+            id="mute-toggle-btn"
+            type="button"
+            title="静音 / 取消静音"
+            class="text-espresso-muted hover:text-rose-tea transition-colors shrink-0"
+          >
+            <!-- 有声图标 -->
+            <svg id="icon-vol-on" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.54 8.46a5 5 0 010 7.07" />
+            </svg>
+            <!-- 静音图标 -->
+            <svg id="icon-vol-off" class="w-3.5 h-3.5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M23 9l-6 6M17 9l6 6" />
+            </svg>
+          </button>
+          <input
+            id="volume-slider"
+            type="range"
+            min="0"
+            max="100"
+            value="25"
+            aria-label="背景音乐音量"
+            class="w-full h-1 bg-rose-blush/80 rounded-lg appearance-none cursor-pointer accent-rose-tea"
+          />
+          <span id="volume-percent" class="text-[10px] text-espresso-muted tabular-nums w-7 text-right shrink-0">25%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 原生 HTML5 音频播放器：部署时只需将 Taylor Swift 的 love-story.mp3 放在同目录即可直接播放原版 -->
+  <audio id="bgmAudio" src="./love-story.mp3" loop preload="auto"></audio>
+
+  <!-- ==================== 6. 右下角「自定义预览」浮动按钮 ==================== -->
+  <button
+    id="open-edit-modal-btn"
+    type="button"
+    class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 bg-rose-tea hover:bg-rose-tea-dark text-white px-4 py-3 rounded-full shadow-lg shadow-rose-tea/30 flex items-center gap-2 text-xs sm:text-sm font-medium transition-all hover:-translate-y-0.5 active:translate-y-0"
+  >
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+    </svg>
+    <span>自定义预览</span>
+  </button>
+
+  <!-- ==================== 弹窗 A：拍立得查看大图 & 替换照片 ==================== -->
+  <div id="lightbox-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-espresso/60 backdrop-blur-sm p-4">
+    <div class="relative bg-white rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl border border-rose-blush">
+      <button
+        id="close-lightbox-btn"
+        type="button"
+        class="absolute top-4 right-4 w-8 h-8 rounded-full bg-cream hover:bg-rose-mist text-espresso flex items-center justify-center transition-colors"
+      >
+        ✕
+      </button>
+
+      <div id="lightbox-image-wrapper" class="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-cream-soft mb-4 flex items-center justify-center">
+        <!-- 动态填充图片或 SVG -->
+      </div>
+
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <p id="lightbox-date" class="font-hand text-lg text-rose-tea"></p>
+          <p id="lightbox-caption" class="font-serif text-base text-espresso mt-0.5"></p>
+        </div>
+        <label
+          for="replace-photo-input"
+          class="shrink-0 cursor-pointer text-xs bg-rose-mist hover:bg-rose-blush text-espresso px-3.5 py-2 rounded-full font-medium transition-colors"
+        >
+          替换本地照片
+        </label>
+        <input id="replace-photo-input" type="file" accept="image/*" class="hidden" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 弹窗 B：自定义情侣信息编辑器 ==================== -->
+  <div id="edit-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-espresso/50 backdrop-blur-sm p-4">
+    <div class="relative bg-cream rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl border border-rose-blush max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <h3 class="font-serif text-xl font-semibold text-espresso">自定义你们的主页</h3>
+          <p class="text-xs text-espresso-muted mt-0.5">修改后会立即生效并保存在当前浏览器中</p>
+        </div>
+        <button
+          id="close-edit-modal-btn"
+          type="button"
+          class="w-8 h-8 rounded-full bg-white hover:bg-rose-mist text-espresso flex items-center justify-center transition-colors"
+        >
+          ✕
+        </button>
+      </div>
+
+      <form id="customizer-form" class="space-y-4">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-espresso-muted mb-1.5">你的昵称</label>
+            <input
+              id="input-name-1"
+              type="text"
+              maxlength="12"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-rose-blush text-sm text-espresso focus:outline-none focus:border-rose-tea"
+              placeholder="例如：阿泽"
+            />
+          </div>
+          <div>
+            <label class="block text-xs text-espresso-muted mb-1.5">对象的昵称</label>
+            <input
+              id="input-name-2"
+              type="text"
+              maxlength="12"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-rose-blush text-sm text-espresso focus:outline-none focus:border-rose-tea"
+              placeholder="例如：小桃"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs text-espresso-muted mb-1.5">在一起的纪念日</label>
+          <input
+            id="input-start-date"
+            type="datetime-local"
+            class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-rose-blush text-sm text-espresso focus:outline-none focus:border-rose-tea"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs text-espresso-muted mb-1.5">浪漫副标题</label>
+          <input
+            id="input-quote"
+            type="text"
+            maxlength="80"
+            class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-rose-blush text-sm text-espresso focus:outline-none focus:border-rose-tea"
+            placeholder="It's a love story, baby, just say yes."
+          />
+        </div>
+
+        <!-- 可选：替换双头像 -->
+        <div class="grid grid-cols-2 gap-3 pt-1">
+          <label class="cursor-pointer flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white border border-dashed border-rose-tea/50 text-xs text-espresso-muted hover:text-rose-tea hover:border-rose-tea transition-colors">
+            <span>上传左侧头像</span>
+            <input id="input-avatar-1" type="file" accept="image/*" class="hidden" />
+          </label>
+          <label class="cursor-pointer flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white border border-dashed border-rose-tea/50 text-xs text-espresso-muted hover:text-rose-tea hover:border-rose-tea transition-colors">
+            <span>上传右侧头像</span>
+            <input id="input-avatar-2" type="file" accept="image/*" class="hidden" />
+          </label>
+        </div>
+
+        <div class="flex items-center justify-between gap-3 pt-3">
+          <button
+            id="reset-defaults-btn"
+            type="button"
+            class="text-xs text-espresso-muted hover:text-rose-tea underline underline-offset-2"
+          >
+            恢复默认
+          </button>
+          <button
+            type="submit"
+            class="px-5 py-2.5 rounded-full bg-rose-tea hover:bg-rose-tea-dark text-white text-sm font-medium shadow-sm transition-colors"
+          >
+            保存并预览
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 轻提示 Toast（替代原生 alert） -->
+  <div
+    id="toast"
+    class="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-espresso text-cream text-xs sm:text-sm px-4 py-2.5 rounded-full shadow-lg opacity-0 pointer-events-none transition-all duration-300"
+  >
+    已保存修改
+  </div>
+
+  <!-- ==================== 核心交互脚本 ==================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ----------------------------------------------------------------
+       * 1. 默认数据配置 & LocalStorage 状态管理
+       * ---------------------------------------------------------------- */
+      const STORAGE_KEY_PROFILE = 'our_love_story_profile_v2';
+      const STORAGE_KEY_BUCKET = 'our_love_story_bucket_v1';
+
+      const defaultProfile = {
+        name1: '我',
+        name2: '你',
+        startDate: '2025-05-31T11:30',
+        quote: "“It's a love story, baby, just say yes.”",
+      };
+
+      let profile = loadProfile();
+
+      function loadProfile() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY_PROFILE);
+          if (saved) return { ...defaultProfile, ...JSON.parse(saved) };
+        } catch (e) {
+          console.warn('读取本地配置失败，使用默认值', e);
+        }
+        return { ...defaultProfile };
+      }
+
+      function saveProfile(newProfile) {
+        profile = newProfile;
+        try {
+          localStorage.setItem(STORAGE_KEY_PROFILE, JSON.stringify(profile));
+        } catch (e) {
+          console.warn('保存本地配置失败', e);
+        }
+        applyProfileToUI();
+      }
+
+      /* 轻提示函数 */
+      let toastTimer = null;
+      function showToast(message) {
+        const toast = document.getElementById('toast');
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.remove('opacity-0', '-translate-y-2');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.remove('opacity-100', 'translate-y-0');
+          toast.classList.add('opacity-0', '-translate-y-2');
+        }, 2600);
+      }
+
+      /* 将情侣信息渲染到页面 */
+      function applyProfileToUI() {
+        document.getElementById('name-1-display').textContent = profile.name1;
+        document.getElementById('name-2-display').textContent = profile.name2;
+        document.getElementById('footer-names').textContent = `${profile.name1} & ${profile.name2}`;
+        document.getElementById('hero-quote-display').textContent = profile.quote;
+
+        const dateObj = new Date(profile.startDate);
+        if (!isNaN(dateObj.getTime())) {
+          const y = dateObj.getFullYear();
+          const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+          const d = String(dateObj.getDate()).padStart(2, '0');
+          const hh = String(dateObj.getHours()).padStart(2, '0');
+          const mm = String(dateObj.getMinutes()).padStart(2, '0');
+          document.getElementById('hero-start-date-badge').textContent = `Since ${y}.${m}.${d} ${hh}:${mm}`;
+        }
+        updateLoveTimer();
+      }
+
+      /* ----------------------------------------------------------------
+       * 2. 实时恋爱计时器
+       * ---------------------------------------------------------------- */
+      function updateLoveTimer() {
+        const start = new Date(profile.startDate).getTime();
+        const now = Date.now();
+        const diff = isNaN(start) ? 0 : Math.max(0, now - start);
+
+        const totalSeconds = Math.floor(diff / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        document.getElementById('timer-days').textContent = days;
+        document.getElementById('timer-hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('timer-minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('timer-seconds').textContent = String(seconds).padStart(2, '0');
+      }
+
+      setInterval(updateLoveTimer, 1000);
+
+      /* ----------------------------------------------------------------
+       * 3. 拍立得照片墙与查看大图 / 替换本地照片弹窗
+       * ---------------------------------------------------------------- */
+      function createWarmIllustration(c1, c2, label, iconPath) {
+        return `
+          <svg viewBox="0 0 400 300" class="w-full h-full object-cover" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g-${label}" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="${c1}" />
+                <stop offset="100%" stop-color="${c2}" />
+              </linearGradient>
+            </defs>
+            <rect width="400" height="300" fill="url(#g-${label})" />
+            <circle cx="320" cy="70" r="36" fill="#FFFBF7" opacity="0.35" />
+            <path d="M0 240 Q110 190 210 230 T400 215 L400 300 L0 300 Z" fill="#FFFBF7" opacity="0.28" />
+            <g transform="translate(172, 110)" fill="none" stroke="#FFFBF7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+              ${iconPath}
+            </g>
+          </svg>
+        `;
+      }
+
+      const polaroids = [
+        {
+          id: 0,
+          date: '2025.05.31',
+          caption: '故事开始的那一天',
+          rotate: '-rotate-2',
+          imageUrl: null,
+          svg: createWarmIllustration('#F3D5D1', '#D99B9B', 'p1', '<path d="M28 46 L10 28 A12 12 0 0 1 28 12 A12 12 0 0 1 46 28 Z" fill="#FFFBF7" fill-opacity="0.25" />'),
+        },
+        {
+          id: 1,
+          date: '2025.07.14',
+          caption: '夏日晚风与冰美式',
+          rotate: 'rotate-1',
+          imageUrl: null,
+          svg: createWarmIllustration('#EFE1D1', '#D8B39C', 'p2', '<circle cx="28" cy="28" r="14" /><path d="M28 6v4M28 46v4M6 28h4M46 28h4" />'),
+        },
+        {
+          id: 2,
+          date: '2025.09.08',
+          caption: '在一起的一百天纪念',
+          rotate: '-rotate-1',
+          imageUrl: null,
+          svg: createWarmIllustration('#E9D5DA', '#C88E99', 'p3', '<path d="M12 36h32v10H12zM18 24h20v12H18zM28 12v12" />'),
+        },
+        {
+          id: 3,
+          date: '2025.10.02',
+          caption: '海边橘子汽水色的日落',
+          rotate: 'rotate-2',
+          imageUrl: null,
+          svg: createWarmIllustration('#F5D7C6', '#D9957E', 'p4', '<path d="M6 36c8-6 14-6 22 0s14 6 22 0M14 26a14 14 0 0 1 28 0" />'),
+        },
+        {
+          id: 4,
+          date: '2025.12.25',
+          caption: '冬日里的第一杯热红酒',
+          rotate: '-rotate-2',
+          imageUrl: null,
+          svg: createWarmIllustration('#E2D8D5', '#B99895', 'p5', '<path d="M28 8v40M10 18l36 20M46 18L10 38" />'),
+        },
+        {
+          id: 5,
+          date: 'Future',
+          caption: '留给下一张合影的位置',
+          rotate: 'rotate-1',
+          imageUrl: null,
+          svg: createWarmIllustration('#F2E5E2', '#D8B6B2', 'p6', '<rect x="10" y="16" width="36" height="26" rx="4" /><circle cx="28" cy="29" r="7" />'),
+        },
+      ];
+
+      let activePolaroidIndex = 0;
+      const lightboxModal = document.getElementById('lightbox-modal');
+      const lightboxImgWrapper = document.getElementById('lightbox-image-wrapper');
+      const lightboxDate = document.getElementById('lightbox-date');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+
+      function renderPolaroids() {
+        const grid = document.getElementById('polaroid-grid');
+        if (!grid) return;
+
+        grid.innerHTML = polaroids
+          .map(
+            (item, idx) => `
+            <button
+              type="button"
+              data-polaroid-idx="${idx}"
+              class="polaroid-card group text-left bg-white p-3.5 pb-5 rounded-2xl border border-rose-blush/70 shadow-md hover:shadow-xl transition-all duration-500 ${item.rotate} hover:rotate-0 hover:-translate-y-1.5 reveal focus:outline-none"
+            >
+              <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-cream-soft mb-3.5">
+                ${
+                  item.imageUrl
+                    ? `<img src="${item.imageUrl}" alt="${item.caption}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />`
+                    : item.svg
+                }
+              </div>
+              <div class="px-1 flex items-baseline justify-between gap-2">
+                <p class="font-serif text-sm text-espresso truncate">${item.caption}</p>
+                <span class="font-hand text-base text-rose-tea shrink-0">${item.date}</span>
+              </div>
+            </button>
+          `
+          )
+          .join('');
+
+        grid.querySelectorAll('.polaroid-card').forEach((card) => {
+          card.addEventListener('click', () => {
+            openLightbox(Number(card.dataset.polaroidIdx));
+          });
+        });
+
+        observeRevealElements();
+      }
+
+      function openLightbox(idx) {
+        activePolaroidIndex = idx;
+        const item = polaroids[idx];
+        if (!item) return;
+
+        lightboxImgWrapper.innerHTML = item.imageUrl
+          ? `<img src="${item.imageUrl}" alt="${item.caption}" class="w-full h-full object-cover" />`
+          : item.svg;
+        lightboxDate.textContent = item.date;
+        lightboxCaption.textContent = item.caption;
+
+        lightboxModal.classList.remove('hidden');
+        lightboxModal.classList.add('flex');
+      }
+
+      function closeLightbox() {
+        lightboxModal.classList.add('hidden');
+        lightboxModal.classList.remove('flex');
+      }
+
+      document.getElementById('close-lightbox-btn').addEventListener('click', closeLightbox);
+      lightboxModal.addEventListener('click', (e) => {
+        if (e.target.id === 'lightbox-modal') closeLightbox();
+      });
+
+      document.getElementById('replace-photo-input').addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const url = URL.createObjectURL(file);
+        polaroids[activePolaroidIndex].imageUrl = url;
+        openLightbox(activePolaroidIndex);
+        renderPolaroids();
+        showToast('拍立得照片已更新预览 ✨');
+        e.target.value = '';
+      });
+
+      /* ----------------------------------------------------------------
+       * 4. 恋爱小事清单（支持点击打勾 & LocalStorage 持久化）
+       * ---------------------------------------------------------------- */
+      const defaultBucketItems = [
+        { id: 1, text: '一起看一场海边日落', done: true },
+        { id: 2, text: '牵手逛一次深夜夜市', done: true },
+        { id: 3, text: '一起拼完一幅 1000 片拼图', done: false },
+        { id: 4, text: '去听一场 Taylor Swift 或喜欢的演唱会', done: false },
+        { id: 5, text: '在家里一起做一顿丰盛的晚餐', done: true },
+        { id: 6, text: '拍一套胶片风格的情侣写真', done: false },
+        { id: 7, text: '一起去北方看一场大雪', done: false },
+        { id: 8, text: '把属于我们的小家布置得暖暖的', done: false },
+      ];
+
+      function loadBucketItems() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY_BUCKET);
+          if (saved) return JSON.parse(saved);
+        } catch (e) {
+          console.warn('读取恋爱清单失败，使用默认值', e);
+        }
+        return defaultBucketItems.map((item) => ({ ...item }));
+      }
+
+      let bucketItems = loadBucketItems();
+
+      function saveBucketItems() {
+        try {
+          localStorage.setItem(STORAGE_KEY_BUCKET, JSON.stringify(bucketItems));
+        } catch (e) {
+          console.warn('保存恋爱清单失败', e);
+        }
+      }
+
+      function renderBucketList() {
+        const container = document.getElementById('bucket-items-container');
+        if (!container) return;
+
+        const doneCount = bucketItems.filter((item) => item.done).length;
+        const totalCount = bucketItems.length;
+        const percent = totalCount > 0 ? Math.round((doneCount / totalCount) * 100) : 0;
+
+        document.getElementById('bucket-done-count').textContent = doneCount;
+        document.getElementById('bucket-total-count').textContent = totalCount;
+        document.getElementById('bucket-progress-bar').style.width = `${percent}%`;
+
+        container.innerHTML = bucketItems
+          .map(
+            (item) => `
+            <button
+              type="button"
+              data-bucket-id="${item.id}"
+              class="bucket-item flex items-center gap-3 p-3.5 rounded-2xl border text-left transition-all ${
+                item.done
+                  ? 'bg-rose-mist/60 border-rose-tea/40 text-espresso'
+                  : 'bg-cream border-rose-blush/60 text-espresso-muted hover:border-rose-tea/50'
+              }"
+            >
+              <span class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-xs transition-colors ${
+                item.done ? 'bg-rose-tea text-white' : 'border border-rose-tea/50 bg-white'
+              }">
+                ${item.done ? '✓' : ''}
+              </span>
+              <span class="text-sm leading-snug ${item.done ? 'line-through decoration-rose-tea/60' : ''}">
+                ${item.text}
+              </span>
+            </button>
+          `
+          )
+          .join('');
+
+        container.querySelectorAll('.bucket-item').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const id = Number(btn.dataset.bucketId);
+            const target = bucketItems.find((i) => i.id === id);
+            if (target) {
+              target.done = !target.done;
+              saveBucketItems();
+              renderBucketList();
+            }
+          });
+        });
+      }
+
+      /* ----------------------------------------------------------------
+       * 5. 悬浮黑胶原曲播放器（原生 HTML5 Audio，默认 25% 柔和音量）
+       * ---------------------------------------------------------------- */
+      const bgmAudio = document.getElementById('bgmAudio');
+      const vinylDisc = document.getElementById('vinyl-disc');
+      const iconPlay = document.getElementById('icon-play');
+      const iconPause = document.getElementById('icon-pause');
+      const volumeSlider = document.getElementById('volume-slider');
+      const volumePercent = document.getElementById('volume-percent');
+      const muteToggleBtn = document.getElementById('mute-toggle-btn');
+      const iconVolOn = document.getElementById('icon-vol-on');
+      const iconVolOff = document.getElementById('icon-vol-off');
+
+      let isPlaying = false;
+      let lastVolume = 0.25;
+
+      // 初始化柔和背景音量为 25%
+      bgmAudio.volume = 0.25;
+
+      function updateMusicUI() {
+        if (isPlaying) {
+          vinylDisc.classList.remove('vinyl-paused');
+          iconPlay.classList.add('hidden');
+          iconPause.classList.remove('hidden');
+        } else {
+          vinylDisc.classList.add('vinyl-paused');
+          iconPlay.classList.remove('hidden');
+          iconPause.classList.add('hidden');
+        }
+      }
+
+      function updateVolumeUI() {
+        const isMuted = bgmAudio.muted || bgmAudio.volume === 0;
+        const pct = isMuted ? 0 : Math.round(bgmAudio.volume * 100);
+        volumeSlider.value = pct;
+        volumePercent.textContent = `${pct}%`;
+        if (isMuted) {
+          iconVolOn.classList.add('hidden');
+          iconVolOff.classList.remove('hidden');
+        } else {
+          iconVolOn.classList.remove('hidden');
+          iconVolOff.classList.add('hidden');
+        }
+      }
+
+      function toggleMusic() {
+        if (isPlaying) {
+          bgmAudio.pause();
+          isPlaying = false;
+          updateMusicUI();
+          return;
+        }
+
+        bgmAudio
+          .play()
+          .then(() => {
+            isPlaying = true;
+            updateMusicUI();
+          })
+          .catch(() => {
+            isPlaying = false;
+            updateMusicUI();
+            showToast('请点击「导入原曲」选择本地 Love Story MP3 试听，部署时把 love-story.mp3 放在同目录即可');
+          });
+      }
+
+      document.getElementById('music-toggle-btn').addEventListener('click', toggleMusic);
+
+      /* 音量滑块调节 */
+      volumeSlider.addEventListener('input', (e) => {
+        const val = Number(e.target.value) / 100;
+        bgmAudio.muted = val === 0;
+        bgmAudio.volume = val;
+        if (val > 0) lastVolume = val;
+        updateVolumeUI();
+      });
+
+      /* 静音 / 取消静音切换 */
+      muteToggleBtn.addEventListener('click', () => {
+        if (bgmAudio.muted || bgmAudio.volume === 0) {
+          bgmAudio.muted = false;
+          bgmAudio.volume = lastVolume > 0 ? lastVolume : 0.25;
+        } else {
+          lastVolume = bgmAudio.volume;
+          bgmAudio.muted = true;
+        }
+        updateVolumeUI();
+      });
+
+      /* 监听音频意外结束或暂停，保持 UI 同步 */
+      bgmAudio.addEventListener('pause', () => {
+        isPlaying = false;
+        updateMusicUI();
+      });
+      bgmAudio.addEventListener('play', () => {
+        isPlaying = true;
+        updateMusicUI();
+      });
+
+      /* 导入本地原曲 MP3 立即试听 */
+      document.getElementById('mp3-file-input').addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+
+        const fileUrl = URL.createObjectURL(file);
+        bgmAudio.src = fileUrl;
+        bgmAudio.load();
+        bgmAudio
+          .play()
+          .then(() => {
+            isPlaying = true;
+            updateMusicUI();
+            showToast(`正在播放原曲（当前音量 ${Math.round(bgmAudio.volume * 100)}%）`);
+          })
+          .catch(() => {
+            isPlaying = false;
+            updateMusicUI();
+            showToast('原曲已导入，点击左侧唱片即可播放');
+          });
+
+        e.target.value = '';
+      });
+
+      updateVolumeUI();
+
+      /* ----------------------------------------------------------------
+       * 6. 自定义预览弹窗逻辑
+       * ---------------------------------------------------------------- */
+      const editModal = document.getElementById('edit-modal');
+
+      function openEditModal() {
+        document.getElementById('input-name-1').value = profile.name1;
+        document.getElementById('input-name-2').value = profile.name2;
+        document.getElementById('input-start-date').value = profile.startDate;
+        document.getElementById('input-quote').value = profile.quote;
+        editModal.classList.remove('hidden');
+        editModal.classList.add('flex');
+      }
+
+      function closeEditModal() {
+        editModal.classList.add('hidden');
+        editModal.classList.remove('flex');
+      }
+
+      document.getElementById('open-edit-modal-btn').addEventListener('click', openEditModal);
+      document.getElementById('close-edit-modal-btn').addEventListener('click', closeEditModal);
+      editModal.addEventListener('click', (e) => {
+        if (e.target.id === 'edit-modal') closeEditModal();
+      });
+
+      document.getElementById('customizer-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name1 = document.getElementById('input-name-1').value.trim() || '我';
+        const name2 = document.getElementById('input-name-2').value.trim() || '你';
+        const startDate = document.getElementById('input-start-date').value || defaultProfile.startDate;
+        const quote = document.getElementById('input-quote').value.trim() || defaultProfile.quote;
+
+        saveProfile({ name1, name2, startDate, quote });
+        closeEditModal();
+        showToast('专属信息已更新 ♥');
+      });
+
+      document.getElementById('reset-defaults-btn').addEventListener('click', () => {
+        saveProfile({ ...defaultProfile });
+        closeEditModal();
+        showToast('已恢复默认设置');
+      });
+
+      /* 本地预览替换双头像 */
+      function bindAvatarUpload(inputId, containerId) {
+        document.getElementById(inputId).addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+          const url = URL.createObjectURL(file);
+          document.getElementById(containerId).innerHTML = `<img src="${url}" alt="Avatar" class="w-full h-full object-cover" />`;
+          showToast('头像已更新预览 ✨');
+          e.target.value = '';
+        });
+      }
+      bindAvatarUpload('input-avatar-1', 'avatar-1-container');
+      bindAvatarUpload('input-avatar-2', 'avatar-2-container');
+
+      /* ----------------------------------------------------------------
+       * 7. 浪漫彩蛋：点击页面空白处飘出柔和爱心粒子
+       * ---------------------------------------------------------------- */
+      const heartColors = ['#C87A7A', '#E2A3A3', '#D98C8C', '#EED6D3'];
+
+      function spawnClickHeart(x, y) {
+        const el = document.createElement('span');
+        el.className = 'click-heart select-none';
+        el.textContent = '♥';
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+        el.style.fontSize = `${14 + Math.random() * 10}px`;
+        el.style.color = heartColors[Math.floor(Math.random() * heartColors.length)];
+        el.style.setProperty('--drift', `${(Math.random() - 0.5) * 44}px`);
+        el.style.setProperty('--rot', `${(Math.random() - 0.5) * 36}deg`);
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 1300);
+      }
+
+      document.addEventListener('click', (e) => {
+        // 避免点击按钮、输入框或弹窗内部时干扰操作
+        if (e.target.closest('button, a, input, label, #edit-modal, #lightbox-modal')) return;
+        spawnClickHeart(e.clientX, e.clientY);
+      });
+
+      /* ----------------------------------------------------------------
+       * 8. 滚动渐显动画观察器
+       * ---------------------------------------------------------------- */
+      let revealObserver = null;
+      function observeRevealElements() {
+        if (!('IntersectionObserver' in window)) {
+          document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
+          return;
+        }
+        if (!revealObserver) {
+          revealObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('visible');
+                  revealObserver.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.12 }
+          );
+        }
+        document.querySelectorAll('.reveal:not(.visible)').forEach((el) => revealObserver.observe(el));
+      }
+
+      /* 页面初始化 */
+      applyProfileToUI();
+      renderPolaroids();
+      renderBucketList();
+      observeRevealElements();
+    })();
+  </script>
+</body>
+</html>
